@@ -1,0 +1,19 @@
+// .cpp for Object Creation and Destruction Lab
+
+#include "object_construction.hpp"
+
+test::test(int num) {
+
+}
+
+test::test(const test& original) {
+    size = original.size;
+    ptr = new int[size];
+    for (int i = 0; i < size; ++i) {
+        ptr[i] = original.ptr[i];
+    }
+}
+
+void test::swap(test&) {
+    int *temp 
+}

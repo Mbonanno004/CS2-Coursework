@@ -1,0 +1,265 @@
+p1-m1: 100/100
+    - SVN revision number: 1279
+    - Functionality:
+        [y] Default constructor
+        [y] int constructor
+        [y] C-string constructor
+        [y] operator==
+        [y] operator<<
+    - Notes:
+        - Great work
+p1-m2: 85/100
+    - SVN revision number: 2312.
+    - Functionality:
+        [y] subscript operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] addition operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] input operator
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written
+            [y] tests for operator[]
+            [y] tests for operator+
+            [y] adequate testing
+        [y] add program
+            [y] present
+            [y] works correctly
+                - You are reading 2 extra numbers (-5)
+    - Notes:
+        - Missing data1-1.txt (-10)
+p1-m2-regrade: 90/100
+    - Revision 3130
+    - Functionality:
+        [y] subscript operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] addition operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] input operator
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written
+            [y] tests for operator[]
+            [y] tests for operator+
+            [y] adequate testing
+        [y] add program
+            [y] present
+            [y] works correctly
+                - You are reading 2 extra numbers (-5)
+    - Notes:
+p1-m3: 86/100
+    - SVN revision number: 3131
+    - Functionality:
+        [y] operator* (20pts)
+            [y] implementation present
+            [y] instructor tests pass
+        [y] timesDigit function (20pts)
+            [y] implementation present
+            [y] instructor tests pass
+        [y] times10 function (20pts)
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written (20pts)
+            [y] tests for multiply
+                - Test case for n1 * 1 == n1, where n1 != 0 (-1)
+                - Test case for 1 * n1 == n1, where n1 != 0 (-1)
+            [y] tests for times10
+                - Test case for 0.times10(0) == 0 (-2)
+                - Test case for 0.times10(n1) == 0, where n1 != 0 (-2)
+            [y] tests for timesDigit
+                - Test case for 0.timesDigit(n1) == 0, where n1 != 0 (-1)
+                - Test case for 1.timesDigit(n1) == n1, where n1 != 0 (-1)
+                - Test case for bigint created with cstring ctor (-1)
+            [y] adequate testing
+        [y] multiply program (20pts)
+            [y] present
+            [y] works correctly
+                - Not checking for end of file before reading (-5)
+    - Notes:
+
+p2-m1: 86/100
+    - SVN Revision: 4199
+    - Functionality:
+        [y] implementation (26 methods) (33pts)
+            [] constructors (3 methods)
+            [] concatenation (4 methods)
+            [] relationship (10 methods)
+            [] length/capacity (2 methods)
+            [] findstr/substr/findchar (3 methods)
+            [] io operators (2 methods)
+            [] operator[] (2 methods)
+        [y] testing (33pts)
+            [] General
+            [] constructors (3 methods)
+            [] concatenation (4 methods)
+            [] relationship (10 methods)
+                - Missing tests for operator!= (-1)
+                - Missing tests for operator> (-1)
+                - Missing tests for operator<= (-1)
+                - Missing tests for operator>= (-1)
+            [] length/capacity (2 methods)
+            [] findstr/substr/findchar (3 methods)
+            [] io operators (2 methods)
+            [] operator[] (2 methods)
+                - Missing tests for operator[] const (-1)
+        [y] instructor tests (6 methods) (34pts)
+            [y] default ctor
+            [y] equality
+            [y] char ctor
+            [y] c-string ctor
+            [y] less than
+                - Tests failed (-3)
+            [y] concat
+                - Tests failed (-3)
+            [y] subscript
+            [y] len and capacity
+            [y] input
+            [y] substring
+                - Tests failed (-3)
+            [y] find char
+            [y] find string
+    - Notes:
+p2-m2: 50/100
+    - SVN Revision: 5185
+    - Functionality (0/50pts):
+        - Notes:
+            - string folder has executables or .o files (-50)
+    - Testing (50/50pts):
+p2-m2-regrade: 90/100
+    - SVN Revision: r5728
+    - Functionality (50/50pts):
+    - Testing (50/50pts):
+p2-m3: 97/100
+    - SVN Revision: 5981
+    - Functionality:
+        [] Split function (25pts)
+        [] Adequate testing (25pts)
+            - Missing test case string with only split char. Ex: "-".split('-') (-3)
+        [] Passes instructor tests (50pts)
+    - Notes:
+p2-m4: 20/100
+    - SVN Revision: 6754
+    - M4 (100pts)
+        - Functionality:
+            [] Correctly parses log file
+                - I can't see results getting printed (-10)
+            [] Prints out entries (all)
+                - Execution failed or incorrect output (-10)
+            [] Prints out number of bytes
+                - Missing implementation (-10)
+                - Execution failed or incorrect output (-10)
+            [] Prints out host
+                - Missing implementation (-10)
+                - Execution failed or incorrect output (-10)
+            [] Runs on all provided files
+                - Execution failed with log_1_tiny.txt (-5)
+                - Execution failed with log_2_small.txt (-5)
+                - Execution failed with log_3_medium.txt (-5)
+                - Execution failed with log_4_large.txt (-5)
+        - Notes:
+            - make logview failed, I can't run your code
+p2-m4-regrade: 68/100
+    - SVN Revision: 7400
+    - M4 (100pts)
+        - Functionality:
+            [] Correctly parses log file
+                - I can't see results getting printed (-10)
+            [] Prints out entries (all)
+                - Execution failed or incorrect output (-10)
+            [] Prints out number of bytes
+                - Execution failed or incorrect output (-2)
+                    - wrong value for large file
+            [] Prints out host
+                - Execution failed or incorrect output (-10)
+            [] Runs on all provided files
+p3-m1: 42/100
+    - Evaluation
+        [] Passes instructor tests
+            [] default constructor failed (-6)
+            [] cop constructor  failed (-6)
+            [] destructor failed (-6)
+            [] constant time swap failed (-6)
+            [] assignment failed (-6)
+            [] push failed (-7)
+            [] pop failed (-7)
+        [] No memory leaks
+            - Has some memory leaks (-6)
+    - Notes:
+        - make tests failed (-6)
+        - Your code is not compiling
+            - Use relative paths for your includes
+        - commented code (-2)
+p3m1-regrade: 90/100
+    - Revision: 7471
+    - Notes:
+        - commented code (-2)
+p3-m2: 90/100
+    - SVN revision number: 7743
+    - stack functionality (35/35)
+    - postfix functionality (55/65)
+        [y] infix to postfix function
+            [y] Missing own test data file (-5)
+        [y] postfix.cpp
+            [y] Doesn't work correctly on data3-1.txt (-5)
+                - You need to use the same format from example
+p3-m3: 85/100
+    - SVN revision: 8364
+    - Functionality:
+        [y] postfix to assembly function
+        [y] evaluation function
+        [y] TMPn generating from 1 to maxint (-5)
+        [y] assembler.cpp
+            [y] Output formatted correctly (-10)
+                - output file missing infix expression
+p4-m1: 100/100
+    - SVN revision: 8892
+    - Functionality:
+        [y] Implemented required functions
+        [y] Passes instructor tests
+        [y] No memory leaks
+p4-m2: 15/100
+    - SVN revision: 9317
+    - Functionality:
+        [y] Implemented required functions
+            - insertMainHeader
+            - insertFileHeader
+                - not implemented (-15)
+            - insertMainReport
+                - not implemented (-15)
+        [y] Passes instructor tests
+            - Profiler lines successfully added
+                - insertMainHeader (-10)
+                - insertFileHeader (-10)
+                - insertMainReport (-10)
+            - make p-simple; ./p-simple (-5)
+        [y] No memory leaks
+            - valgrind ./profiler simple.cpp.xml (-10)
+            - valgrind ./p-simple (-10)
+p4-m2-regrade: 85/100
+    - Revision 9541
+    - Functionality:
+        [y] Implemented required functions
+        [y] Passes instructor tests
+            - Profiler lines successfully added
+                - insertMainHeader (-5)
+                    - For multiple files, you are not adding the other files profile declaration at the top of the file
+                - insertFileHeader (-5)
+                    - extern is not added at the top of the file
+                - insertMainReport (-5)
+                    - You are adding the other files report after return statement
+        [y] No memory leaks
+p4-m3: 70/100
+    - SVN revision: 9607
+    - Functionality:
+        [y] Implemented required functions
+        [y] Passes instructor tests
+            - Profiler lines successfully added
+            - Generated code compiles, runs and works as expected
+                - make p-sort not working
+                - ./p-sort -bs -sz 100 -od -osd (-10)
+                - ./p-sort -ss -sz 100 -od -osd (-10)
+                - ./p-sort -qs -sz 100 -od -osd (-10)

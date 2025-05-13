@@ -1,0 +1,36 @@
+//  Stack class test program
+//
+//  Tests: empty()
+//
+
+#include "stack.hpp"
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include <cassert>
+#include <iostream>
+
+//===========================================================================
+int main ()
+{
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<int>  x;
+        // TEST
+        // VERIFY
+        assert(x.empty() == true);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String>  x;
+        String test("word");
+        x.push(test);
+        // TEST
+        // VERIFY
+        assert(x.empty() == false);
+    }
+    
+    std::cout << "Done testing empty()." << std::endl;
+    return 0;
+}

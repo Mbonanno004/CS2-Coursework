@@ -1,0 +1,36 @@
+// Infix to Prefix lab
+//
+// Michael Bonanno
+
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include "/users/kent/student/mbonann2/cs23001/assembler/stack.hpp"
+
+String infixToPrefix(String infix) {
+    if (infix.length() == 0) return String();
+    /*
+    std::vector<String> parts;
+    parts = infix.split(' ');
+    int size = parts.size();
+    */
+
+    stack<String> s;
+    String lhs, rhs, op;
+    String token;
+
+    int i = 0;
+    while (infix[i] != 0) {
+        token = infix[i];
+        ++i;
+        if (token != '(' && token != ')') {
+            s.push(token);
+        } 
+        if (token == ')') {
+            rhs = s.pop();
+            op = s.pop();
+            lhs = s.pop();
+            s.push(op + lhs + rhs);
+    }
+}

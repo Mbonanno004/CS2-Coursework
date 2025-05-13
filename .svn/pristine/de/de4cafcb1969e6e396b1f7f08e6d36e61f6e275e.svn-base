@@ -1,0 +1,244 @@
+// Michael Bonanno
+// string.cpp for the string project
+
+#include "string.hpp"
+
+//Constructors
+String::String() { 
+    stringSize = 1;
+    str = new char[stringSize];
+    str[0] = '\0';
+}
+
+String::String (char a) {
+    if (a == '\0') {
+        stringSize = 1;
+        str = new char[stringSize];
+        str[0] = '\0';
+    } else {
+        stringSize = 2;
+        str = new char[stringSize];
+        str[0] = a;
+        str[1] = '\0';
+    }
+}
+
+String::String (const char arr[]) {
+    int length = 0;
+
+    while (arr[length] != '\0') {
+        ++length;
+    }
+
+    stringSize = length + 1;
+
+    str = new char[stringSize];
+
+    int i = 0;
+
+    while(i < length) {
+        str[i] = arr[i];
+        ++i;
+    }
+
+    str[length] = '\0';
+}
+
+// Copy ctor
+String::String(const String& original) {
+    stringSize = original.stringSize;
+    str = new char[stringSize];
+    for(int i = 0; i < stringSize; ++i) {
+        str[i] = original.str[i];
+    }
+}
+
+// Destructor
+String::~String() {
+    delete[] str;
+}
+
+// Constant time swap
+void String::swap(String& swap) {
+    char *temp = str;
+    str = swap.str;
+    swap.str = temp;
+    int tmp = stringSize;
+    stringSize = swap.stringSize;
+    swap.stringSize = tmp;
+}
+
+// Assignment overload
+String& String::operator=(String rhs) {
+    swap(rhs);
+    return *this;
+}
+
+// String methods
+int String::capacity() const {
+    return stringSize - 1;
+}
+
+int String::length() const {
+    return stringSize - 1;
+}
+
+char& String::operator[] (int num) {
+    return str[num];
+}
+
+char String::operator[] (int num) const {
+    return str[num];
+}
+
+String String::substr (int start, int end) const{
+    if (end >= length()) {
+        end = length() - 1;
+    }
+    
+    if (start < 0 || start > end) {
+        std::cerr << "Invalid Start/End" << std::endl;
+        return String();
+    }
+
+    int subLength = end - start + 1;
+    String sub;
+    delete[] sub.str;
+    sub.stringSize = subLength + 1;
+    sub.str = new char[sub.stringSize];
+    
+    for (int i = 0; i < subLength; ++i) {
+        sub.str[i] = str[start + i];
+    }
+
+    sub.str[sub.stringSize - 1] = '\0';
+    return sub;
+}
+
+int String::findch (int start, char ch) const{
+    if (start < 0 || start >= length()) return -1;
+
+    int i = start;
+
+    while (str[i] != '\0') {
+        if (str[i] == ch) {
+            return i;
+        }
+        ++i;
+    }
+
+    return -1;
+}
+
+int String::findstr (int start, const String& string) const {
+    if (start < 0 || start >= length()) return -1;
+    int stringLength = string.length();
+    if (stringLength == 0) return -1;
+
+    for (int i = start; i <= length() - stringLength; ++i) {
+        int j = 0;
+        while(j < stringLength && str[i + j] == string.str[j]) {
+            ++j;
+        }
+
+        if (j == stringLength) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// overloaded relational operators
+// overloaded methods
+String& String::operator+= (const String& rhs) {
+    String rhsCopy(rhs);
+    if (rhsCopy.length() == 0) return *this;
+
+    String temp;
+    if (length() != 0) {
+        temp.swap(*this);
+    }
+
+    int newLength = temp.length() + rhsCopy.length();
+    stringSize = newLength + 1;
+
+    delete[] str;
+    str = new char[stringSize];
+
+    for (int i = 0; i < temp.length(); ++i) {
+        str[i] = temp.str[i];
+    }
+
+    for (int i = 0; i < rhsCopy.length(); ++i) {
+        str[temp.length() + i] = rhsCopy.str[i];
+    }
+
+    str[stringSize - 1] = '\0';
+    return *this;
+}
+
+bool String::operator== (const String& rhs) const {
+    if (length() != rhs.length()) return false;
+
+    for (int i = 0; i < length(); ++i) {
+        if (str[i] != rhs.str[i]) return false;
+    }
+    return true;
+}
+
+bool String::operator< (const String& rhs) const {
+    int i = 0;
+    
+    while (str[i] != 0 && rhs.str[i] != 0) {
+        if (str[i] < rhs.str[i]) return true;
+        if (str[i] > rhs.str[i]) return false;
+        ++i;
+    }
+
+    return (str[i] == '\0' && rhs.str[i] != '\0');
+}
+
+// overloaded free functions
+String operator+ (String lhs, const String& rhs) {
+    lhs += rhs;
+    return lhs;
+}
+
+bool operator== (const char arr[],  const String& rhs) { return String(arr) == rhs; }
+
+bool operator== (char c,            const String& rhs) { return String(c) == rhs; }
+
+bool operator<  (const char arr[],  const String& rhs) { return String(arr) < rhs; }
+
+bool operator<  (char character,    const String& rhs) { return String(character) < rhs; }
+
+bool operator<= (const String& lhs, const String& rhs) { return (lhs < rhs || lhs == rhs); }
+
+bool operator!= (const String& lhs, const String& rhs) { return !(lhs == rhs); }
+
+bool operator>= (const String& lhs, const String& rhs) { return !(lhs < rhs); }
+
+bool operator>  (const String& lhs, const String& rhs) { return rhs < lhs; }
+
+// overloaded I/O
+std::istream& operator>> (std::istream& in, String& input) {
+    const int bufferSize = 1024;
+    char buffer[bufferSize];
+
+    if (in >> buffer) {
+        input = String(buffer);
+    }
+    
+    return in;
+}
+
+std::ostream& operator<< (std::ostream& out, const String& output) {
+    int i = 0;
+    
+    while (output.str[i] != '\0') {
+        out << output.str[i];
+        ++i;
+    }
+
+    return out;
+}

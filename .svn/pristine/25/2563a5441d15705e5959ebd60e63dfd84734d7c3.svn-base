@@ -1,0 +1,86 @@
+// CPP file for project 1
+#include "bigint.hpp"
+
+Bigint::Bigint() {
+    for (int i = 0; i < CAPACITY; i++) {
+        digits[i] = 0;
+    }
+}
+
+Bigint::Bigint(int number) : Bigint() { 
+    if (number == 0) {
+        digits[0] = 0;
+        return;
+    }
+
+    int index = 0;
+
+    while (number > 0 && index < CAPACITY) {
+        digits[index] = number % 10;
+        number /= 10;
+        index++;
+    }
+}
+
+Bigint::Bigint(const char string[]) : Bigint() {
+    int length = 0;
+
+    while (string[length] != '\0') {
+        length++;
+    }
+
+    int strIndex = length - 1;
+    int arrIndex = 0;
+
+    while (strIndex >= 0 && arrIndex < CAPACITY) {
+        digits[arrIndex] = string[strIndex] - '0';
+        strIndex--;
+        arrIndex++;
+    }
+}
+
+void Bigint::debugPrint(std::ostream& out) const {
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        out << digits[i];
+        if (i > 0) {
+            out << " | ";
+        }
+    }
+    out << std::endl;
+}
+
+// overloaded operators
+
+std::ostream& operator<<(std::ostream& out, const Bigint& output) { // overloaded output
+    int firstNonZero = CAPACITY - 1;
+
+    while (firstNonZero >= 0 && output.digits[firstNonZero] == 0) {
+        firstNonZero--;
+    }
+
+    if (firstNonZero == 0) {
+        out << 0;
+        return out;
+    }
+
+    int everyHundred = 0;
+
+    for (int i = firstNonZero; i >= 0; i--) {
+        everyHundred++;
+        if (everyHundred == 100) {
+            out << std::endl;
+        }
+        out << output.digits[i];
+    }
+
+    return out;
+}
+
+bool Bigint::operator== (const Bigint& compare) const { // overloaded comparison
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        if (digits[i] != compare.digits[i]) {
+            return false;
+        }
+    }
+    return true;
+}

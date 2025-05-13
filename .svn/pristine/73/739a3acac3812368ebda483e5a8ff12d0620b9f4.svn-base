@@ -1,0 +1,76 @@
+// 
+// Kent State University
+// CS 23001 - J. Maletic
+//
+// Lab on dynamic memory
+//
+// Memory allocation and array bounds checking
+//
+// C/C++ does not check array bounds, so accessing an element of an
+//    array outside of its defined size results in Undefined Behavior
+//
+// TO COMPILE: clang++ -Wall array_bounds_check.cpp -o bounds_check
+// TO RUN: ./bounds_check
+//           Then enter a postivie integer value at the prompt
+//
+// Instructions:
+//   Read the code.
+//   Run the program on wasp/hornet (multiple) times.
+//   Try these values of 10, 16, 32, 33, 40
+//
+//   Read over the output each time.
+//
+//   What is wrong with the output?
+// str1 only has 5 spots in it's array. However the ouput shows str1 having as many slots as whatever you input for n.
+// This is not the case though. Because of this, when you type in 32, 33, and 40 you actully begin to reach the str2 on the heap
+// and begin writing to it, rather than actually writing to str1.
+//   What is wrong with the code?
+// The sizes of both the new arrays str1 and str2 are both set before any n value is read in
+//   Why is no error raised?
+// The array's are stored on the heap, because of how c++ is setup the compiler won't do any optimization on the heap.
+// So it can't give any errors in that case. So you'd have to investigate the heap for the errors yourself.
+//   How many bytes are between the start of str1 and str2?
+// There would be 32 bytes between str1 and str2, that's why when you type in 33 in the value for n in the program
+// you actually begin writing to str2, because you've actually reached to that point in the heap where str2 is stored.
+//   How can you test for this logical error?
+// 
+//   How can you prevent this type of error?
+//
+//   Include the delete[] at the end and recompile, what changes?
+
+
+#include <iostream>
+
+
+int main () {
+    char *str1 = new char[5];     //Allocate two arrays on the heap
+    char *str2 = new char[20];
+    int n=0;
+
+    std::cout  << "str1->char[5]" << std::endl;
+    std::cout  << "str2->char[20]" << std::endl;
+    std::cout  << "Enter positive integer value: ";  // n > 0
+    std::cin >> n;
+
+    std::cout  << "Write to array str1:" << std::endl;
+    for (int i = 0; i < n; ++i) {   //Write to str1[0...n-1]
+        str1[i] = 'X';
+        std::cout << "str1[" << i << "] = 'X'" << std::endl;
+    }
+
+    std::cout  << "Contents of array str1:" << std::endl;
+    for (int i = 0; i < n; ++i) {   //Print str1[0...n-1]
+        std::cout << "str1[" << i << "] == " << "|" <<  str1[i] << "|" << std::endl;
+    }
+
+    std::cout  << "Contents of array str2:" << std::endl;
+    for (int i = 0; i < 20; ++i) {    //Print str2[0...19]
+        std::cout << "str2[" << i << "] == " << "|" <<  str2[i] << "|" << std::endl;
+    }
+
+    //delete[] str1;  //Try with and without deletes
+    //delete[] str2;
+
+    return 0;
+}
+

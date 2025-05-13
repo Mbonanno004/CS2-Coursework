@@ -1,0 +1,25 @@
+//hpp file for project 1
+#ifndef BIGINT
+#define BIGINT
+
+#include <iostream>
+using namespace std;
+
+const int CAPACITY = 300;
+
+class Bigint{
+public:
+         Bigint() {} // initializes bigint to 0, and sets all char characters to a -1
+         Bigint(int); // initializes bigint to an int value you provide
+         Bigint(const char[]); // initialize bigint to a const char array you provide
+    void debugPrint(std::ostream&) const;
+    bool operator==(const Bigint&) const; // overloaded comparison
+private:
+    int digits[CAPACITY];
+};
+
+std::ostream& operator<<(std::ostream&, const Bigint&); // overloaded output
+
+
+#endif
+// end of code

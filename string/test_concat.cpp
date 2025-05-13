@@ -1,0 +1,152 @@
+//  String Test Program
+//
+//  Tests: concatenation +=, + // uses ==, and length()
+//
+//  
+#include <iostream>
+#include <cassert>
+#include "string.hpp"
+
+int main() {
+    {
+        std::cout << "Test 1:" << std::endl;
+        //Setup fixture 
+        String one;
+        String two;
+        String result;
+        std::cout << "after setup" << std::endl;
+        //Test (empty string + empty string)
+        one += two;
+        result = one + two;
+        //Verify
+        assert(two == String());
+        assert(one == two);
+        assert(one == String());
+        assert(result == String());
+        std::cout << "Passed test 1" << std::endl;
+    }
+
+    {
+        std::cout << "Test 2:" << std::endl;
+        //Setup fixture 
+        String one;
+        String two('a');
+        String three;
+        String result;
+        //Test (empty string plus one char)
+        one += two;
+        result = three + two;
+        //Verify
+        assert(three == '\0');
+        assert(two == 'a');
+        assert(one == two);
+        assert(one == 'a');
+        assert(result == 'a');
+        std::cout << "Passed test 2" << std::endl;
+    }
+
+    {
+        std::cout << "Test 3:" << std::endl;
+        //Setup fixture
+        String one('a');
+        String two('a');
+        String three('a');
+        String result;
+        //Test (single char string + single char string)
+        one += two;
+        result = three + two;
+        //Verify
+        assert(two == 'a');
+        assert(three == 'a');
+        assert(one == result);
+        assert(one == "aa");
+        assert(result == "aa");
+        std::cout << "Passed test 3" << std::endl;
+    }
+
+    {
+        std::cout << "Test 4:" << std::endl;
+        //Setup fixture
+        String one('a');
+        String two("aa");
+        String three('a');
+        String result;
+        //Test (single char string + multi char string)
+        one += two;
+        result = three + two;
+        //Verify
+        assert(two == "aa");
+        assert(one == result);
+        assert(one == "aaa");
+        assert(result == "aaa");
+        std::cout << "Passed test 4" << std::endl;
+    }
+
+    {
+        std::cout << "Test 5:" << std::endl;
+        //Setup fixture
+        String one("aaa");
+        String two("aa");
+        String three("aaa");
+        String result;
+        //Test 
+        one += two;
+        result = three + two;
+        //Verify
+        assert(two == "aa");
+        assert(one == result);
+        assert(one == "aaaaa");
+        assert(result == "aaaaa");
+        std::cout << "Passed test 5" << std::endl;
+    }
+
+    {
+        std::cout << "Test 6:" << std::endl;
+        //Setup fixture
+        int size = 150;
+        char test[size];
+        for (int i = 0; i < size; i++) {
+            test[i] = 'a';
+        }
+        String one(test);
+        String two(test);
+        String three(test);
+        String result;
+        //Test 
+        one += two;
+        result = three + two;
+        //Verify
+        assert(two == test);
+        assert(result == one);
+        std::cout << "Passed test 6" << std::endl;
+    }
+
+    {
+        std::cout << "Test 7:" << std::endl;
+        //Setup fixture
+        String one('a');
+        //Test
+        one += one;
+        //Verify
+        assert(one == "aa");
+        std::cout << "Passed test 7" << std::endl;
+    }
+
+    {
+        std::cout << "Test 8:" << std::endl;
+        //Setup fixture
+        String one;
+        String two('a');
+        //Test
+        two += one;
+        //Verify
+        assert(two == "a");
+        std::cout << "Passed test 8" << std::endl;
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "Finished testing concatenation" << std::endl;
+        std::cout << std::endl;
+    }
+}

@@ -1,0 +1,10 @@
+p1-m1: 95/100
+    - SVN revision number: 1279
+    - Functionality:
+        [y] Default constructor
+        [y] int constructor
+        [y] C-string constructor
+        [y] operator==
+        [y] operator<<
+    - Notes:
+        - indirect include (-5)

@@ -1,0 +1,63 @@
+//  String Test Program
+//
+//  Tests: substr()
+//
+//  
+#include <iostream>
+#include <cassert>
+#include "string.hpp"
+
+int main() {
+    {
+        std::cout << "Test 1:" << std::endl;
+        //Setup fixture
+        String one("Hi my name is Michael Bonanno");
+        //Test
+        String sub = one.substr(6, 10);
+        //Verify
+        std::cout << sub << std::endl;
+        assert(sub == "name");
+        assert(one.substr(6, 9) == "name");
+        std::cout << "Passed test 1" << std::endl;
+    }
+
+    {
+        std::cout << "Test 2:" << std::endl;
+        //Setup fixture
+        String one("abcdefg");
+        //Test
+        String sub = one.substr(-4, 5);
+        //Verify
+        assert(sub == '\0');
+        std::cout << "Passed test 2" << std::endl;
+    }
+
+    {
+        std::cout << "Test 3:" << std::endl;
+        //Setup fixture
+        String one("abcdefg");
+        //Test
+        String sub = one.substr(0, 3000);
+        //Verify
+        assert(sub == '\0');
+        std::cout << "Passed test 3" << std::endl;
+    }
+
+    {
+        std::cout << "Test 4:" << std::endl;
+        //Setup fixture
+        String one;
+        String two;
+        //Test
+        //Verify
+        //assert();
+        //assert();
+        std::cout << "Passed test 4" << std::endl;
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "Finished testing < operator" << std::endl;
+        std::cout << std::endl;
+    }
+}

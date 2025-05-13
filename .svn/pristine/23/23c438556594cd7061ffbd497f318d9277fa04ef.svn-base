@@ -1,0 +1,86 @@
+// utilities cpp
+//
+// Michael Bonanno
+//
+// Project 3 Milestone 2
+
+#include <iostream>
+#include "utilities.hpp"
+
+String infixToPostfix(const String& infix) {
+    if (infix.length() == 0) return String();
+
+    std::vector<String> expression;
+    expression = infix.split(' ');
+
+    stack<String> s;
+    String lhs, rhs, op;
+    String token;
+
+    int i = 0;
+    while (expression[i] != ';') {
+        token = expression[i];
+        ++i;
+        if (token == ')') {
+            rhs = s.pop();
+            op = s.pop();
+            lhs = s.pop();
+            s.push(lhs + " " + rhs + " " + op);
+        } else if (token != '(' && token != '\r') {
+            s.push(token);
+        } 
+    }
+    return s.pop();
+}
+
+std::vector<String> posftfixToAssembly(const String& postfix) {
+    std::vector<String> result;
+    if (postfix.length() == 0) return result;
+
+    std::vector<String> tokens = postfix.split(' ');
+    int size = tokens.size();
+
+    stack<String> s;
+    String rhs, lhs;
+    String token;
+    
+    int i = 0;
+    int tmpCounter = 0;
+    while (i < size) {
+        token = tokens[i];
+        ++i;
+        if (isOperator(token)) {
+            rhs = s.pop();
+            lhs = s.pop();
+            result.push_back("   LD     " + lhs);
+            String tmp;
+            ++tmpCounter;
+            if (token == '+') {
+                tmp = "   AD     " + rhs;
+                result.push_back(tmp);
+            } else if (token == '-') {
+                tmp = "   ST     " + rhs;
+                result.push_back(tmp);
+            } else if (token == '*') {
+                tmp = "   MU     " + rhs;
+                result.push_back(tmp);
+            } else if (token == '/') {
+                tmp = "   DV     " + rhs;
+                result.push_back(tmp);
+            }
+            String exp = "TMP" + String(tmpCounter);
+            s.push(exp);
+            result.push_back("   ST     " + exp);
+        } else {
+            s.push(token);
+        }
+    }
+}
+
+bool isOperator(String ch) {
+	return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+}
+
+bool isOperand(String ch) {
+	return ('0' <= ch) && (ch <= '9');
+}

@@ -1,0 +1,58 @@
+//  Stack class test program
+//
+//  Tests: operator =
+//
+
+#include "stack.hpp"
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include <cassert>
+#include <iostream>
+
+//===========================================================================
+int main ()
+{
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        stack<String> y;
+        // TEST 
+        x = y;
+        // VERIFY 
+        assert(x.empty() == true);
+        assert(y.empty() == true);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        stack<String> y;
+        String test("word");
+        // TEST 
+        x.push(test);
+        y = x;
+        // VERIFY 
+        assert(x.top() == test);
+        assert(y.top() == test);
+    }
+    
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        stack<String> y;
+        String test("word");
+        String test2("next");
+        // TEST 
+        x.push(test);
+        y.push(test2);
+        x = y;
+        // VERIFY
+        assert(x.top() == test2);
+        assert(y.top() == test2);
+    }
+    
+    std::cout << "Done testing push()." << std::endl;
+    return 0;
+}

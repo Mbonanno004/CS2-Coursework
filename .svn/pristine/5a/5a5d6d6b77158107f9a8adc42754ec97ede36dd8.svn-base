@@ -1,0 +1,44 @@
+// CPP file for project 1
+#include "bigint.hpp"
+
+Bigint::Bigint() {
+    for (int i = 0; i < CAPACITY - 1; i++) {
+        intNumber[i] = 0;
+    }
+    for (int i = 0; i < CAPACITY - 1; i++) {
+        charNumber[i] = '0';
+    }
+}
+
+Bigint::Bigint(int newNumber) { // sets to be the same as a passed in int value
+    // your gonna need to turn the number parameter into a char[] array
+    
+}
+
+Bigint::Bigint(const char digits[]) {
+    int newArrSlot = sizeof(digits);
+    int arrSlot = CAPACITY - 1;
+    while (newArrSlot != -1) {
+        charNumber[arrSlot] = digits[newArrSlot];
+        arrSlot--;
+        newArrSlot--;
+    }
+}
+
+void Bigint::debugPrint(std::ostream& out) const {
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        out << charNumber[i] << " |";
+    }
+    out << std::endl;
+}
+
+// overloaded operators
+
+std::ostream& operator<<(std::ostream& out, const Bigint& output) { // overloaded output
+    
+    return out;
+}
+
+bool operator== (const Bigint& one, const Bigint& two) { // overloaded comparison
+    
+}

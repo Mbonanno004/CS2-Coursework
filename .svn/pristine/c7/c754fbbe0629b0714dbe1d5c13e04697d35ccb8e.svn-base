@@ -1,0 +1,34 @@
+// utilities cpp
+//
+// Michael Bonanno
+//
+// Project 3 Milestone 2
+
+#include <iostream>
+#include "utilities.hpp"
+
+String infixToPostfix(String infix) {
+    if (infix.length() == 0) return String();
+
+    std::vector<String> expression;
+    expression = infix.split(' ');
+
+    stack<String> s;
+    String lhs, rhs, op;
+    String token;
+
+    int i = 0;
+    while (expression[i] != ';') {
+        token = expression[i];
+        ++i;
+        if (token == ')') {
+            rhs = s.pop();
+            op = s.pop();
+            lhs = s.pop();
+            s.push(lhs + rhs + op);
+        } else if (token != '(' && token != '\r') {
+            s.push(token);
+        } 
+    }
+    return s.pop();
+}

@@ -1,0 +1,32 @@
+p1-m1: 100/100
+    - SVN revision number: 1279
+    - Functionality:
+        [y] Default constructor
+        [y] int constructor
+        [y] C-string constructor
+        [y] operator==
+        [y] operator<<
+    - Notes:
+        - Great work
+p1-m2: 85/100
+    - SVN revision number: 2312.
+    - Functionality:
+        [y] subscript operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] addition operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] input operator
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written
+            [y] tests for operator[]
+            [y] tests for operator+
+            [y] adequate testing
+        [y] add program
+            [y] present
+            [y] works correctly
+                - You are reading 2 extra numbers (-5)
+    - Notes:
+        - Missing data1-1.txt (-10)

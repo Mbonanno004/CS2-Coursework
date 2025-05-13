@@ -1,0 +1,151 @@
+// CPP file for project 1
+#include "bigint.hpp"
+
+// Constructor definitions
+
+Bigint::Bigint() {
+    for (int i = 0; i < CAPACITY; i++) {
+        digits[i] = 0;
+    }
+}
+
+Bigint::Bigint(int number) : Bigint() { 
+    if (number == 0) {
+        digits[0] = 0;
+        return;
+    }
+
+    int index = 0;
+
+    while (number > 0 && index < CAPACITY) {
+        digits[index] = number % 10;
+        number /= 10;
+        index++;
+    }
+}
+
+Bigint::Bigint(const char string[]) : Bigint() {
+    int length = 0;
+
+    while (string[length] != '\0') {
+        ++length;
+    }
+
+    int strIndex = length - 1;
+    int arrIndex = 0;
+
+    while (strIndex >= 0 && arrIndex < CAPACITY) {
+        digits[arrIndex] = string[strIndex] - '0';
+        --strIndex;
+        ++arrIndex;
+    }
+}
+
+// Method definitions
+
+void Bigint::debugPrint(std::ostream& out) const {
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        out << digits[i];
+        if (i > 0) {
+            out << " | ";
+        }
+    }
+    out << std::endl;
+}
+
+// Overloaded operators
+
+// Comparisons
+
+bool Bigint::operator== (const Bigint& compare) const { 
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        if (digits[i] != compare.digits[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool operator== (const Bigint& compare, int num) { return compare == Bigint(num); }
+
+bool operator== (int num, const Bigint& compare) { return Bigint(num) == compare; }
+
+bool operator== (const Bigint& compare, const char charNum[]) { return compare == Bigint(charNum); }
+
+bool operator== (const char charNum[], const Bigint& compare) { return Bigint(charNum) == compare; }
+
+// Addition
+
+Bigint Bigint::operator+ (const Bigint& add) const {
+    Bigint result;
+    int carry = 0;
+
+    for (int i = 0; i < CAPACITY; ++i) {
+        int sum = digits[i] + add.digits[i] + carry;
+        result.digits[i] = sum % 10;
+        carry = sum / 10;
+    }
+
+    return result;
+}
+
+// Subscript
+
+int Bigint::operator[] (int number) const { 
+    if (number  >= 0 && number < CAPACITY) {
+        return digits[number];
+    } else {
+        std::cout << "(Overloaded subscript error) Index is out of bounds of Bigint" << std::endl;
+        return -1;
+    }
+}
+
+// I/O streams
+
+// Overloaded output
+
+std::ostream& operator<< (std::ostream& out, const Bigint& output) {
+    int firstNonZero = CAPACITY - 1;
+
+    while (firstNonZero >= 0 && output.digits[firstNonZero] == 0) {
+        --firstNonZero;
+    }
+
+    if (firstNonZero < 0) {
+        out << "0";
+        return out;
+    }
+
+    int everyHundred = 0;
+
+    for (int i = firstNonZero; i >= 0; i--) {
+        ++everyHundred;
+        if (everyHundred == 100) {
+            out << std::endl;
+        }
+        out << output.digits[i];
+    }
+
+    return out;
+}
+
+// overloaded input
+
+std::istream& operator>> (std::istream& in, Bigint& input) {
+    char placeHolder[CAPACITY + 1];
+    int index = 0;
+    char ch;
+
+    while(in.get(ch) && ch != ';') {
+        if (ch >= '0' && ch <= '9') {
+            if (index < CAPACITY) {
+                placeHolder[index] = ch;
+                ++index;
+            }
+        }
+    }
+    placeHolder[index] = '\0';
+
+    input = Bigint(placeHolder);
+    return in;
+}

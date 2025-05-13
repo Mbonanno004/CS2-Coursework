@@ -1,0 +1,36 @@
+// main.cpp for the Object and Construction lab
+
+#include "object_construction.hpp" 
+
+int main() {
+
+    {
+    test def;
+    std::cout << "Called default constructor";
+
+    std::cout << "------------" << std::endl;
+    std::cout << std::endl;
+    }
+    
+    {
+    char arr[] = "test1";
+    test one(arr);
+    test two(one);
+
+    std::cout << "------------" << std::endl;
+    std::cout << std::endl;
+
+    }
+
+    {
+    char arr[] = "test2";
+    test three(arr);
+    test four;
+    four = three;
+
+    std::cout << "------------" << std::endl;
+    std::cout << "End of main" << std::endl;
+    }
+    
+    return 0;
+}

@@ -1,0 +1,38 @@
+// Michael Bonanno
+// Bigint
+// CS 23001
+
+#include "bigint.hpp" 
+
+int main () {
+    std::ifstream in;
+    in.open("data1-2.txt");
+    if(!in.is_open()) {
+        std::cerr << "File not found: data1-2.txt" << std::endl;
+        exit(1);
+    }
+
+    Bigint one;
+    Bigint two;
+    Bigint product;
+
+    while(!in.eof()) {
+        in >> one;
+        in >> two;
+
+        std::cout << "Bigint 1: " << one << std::endl;
+        std::cout << std::endl;
+        std::cout << "Bigint 2: " << two << std::endl;
+        std::cout << std::endl;
+
+        product = one * two;
+
+        std::cout << "Product: " << product << std::endl;
+        std::cout << "------------------" << std::endl;
+        std::cout << std::endl;
+
+    }
+    
+    in.close();
+    return 0;
+}

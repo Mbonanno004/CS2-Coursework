@@ -1,0 +1,70 @@
+// CPP file for project 1
+#include "bigint.hpp"
+
+Bigint::Bigint() {
+    for (int i = 0; i < CAPACITY; i++) {
+        digits[i] = -1;
+    }
+}
+
+Bigint::Bigint(int number) : Bigint() { 
+    if (number == 0) {
+        digits[0] = 0;
+        return;
+    }
+
+    int index = 0;
+
+    while (number > 0 && index < CAPACITY) {
+        digits[index] = number % 10;
+        number /= 10;
+        index++;
+    }
+}
+
+Bigint::Bigint(const char string[]) : Bigint() {
+    int length = 0;
+
+    while (string[length] != '\0') {
+        length++;
+    }
+
+    int strIndex = length - 1;
+    int arrIndex = 0;
+
+    while (strIndex >= 0 && arrIndex < CAPACITY) {
+        digits[arrIndex] = string[strIndex] - '0';
+        strIndex--;
+        arrIndex++;
+    }
+}
+
+void Bigint::debugPrint(std::ostream& out) const {
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        out << digits[i];
+        if (i > 0) {
+            out << " | ";
+        }
+    }
+    out << std::endl;
+}
+
+// overloaded operators
+
+std::ostream& operator<<(std::ostream& out, const Bigint& output) { // overloaded output
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        if (output.digits[i] > -1) {
+            out << output.digits[i];
+        }
+    }
+    return out;
+}
+
+bool operator== (const Bigint& rhs) const { // overloaded comparison
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        if (this.digits[i] != rhs.digits[i]) {
+            return false;
+        }
+    }
+    return true;
+}

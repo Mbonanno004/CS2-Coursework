@@ -1,0 +1,39 @@
+// CPP file for project 1
+#include "bigint.hpp"
+
+Bigint::Bigint(int numdigits) { // sets the size of the array to the length of
+    size_ = numdigits;
+    number_ = new int[size_];
+}
+
+Bigint::Bigint(const char digits[]) {
+    for(int i = 0; i < size_; i++) {
+        number_[i] = digits[i];
+    }
+}
+
+void Bigint::debugPrint(std::ostream&) const {
+
+}
+
+// big 3
+
+Bigint::Bigint(const Bigint&) { // copy constructor
+
+}
+
+Bigint Bigint:: operator= (const Bigint&) { // overloaded assignment
+
+}
+
+Bigint::~Bigint() { // destructor
+
+}
+
+// other overloaded operators
+
+Bigint operator<< (const Bigint& output) { // overloaded output operator
+
+}
+
+Bigint& Bigint:: operator==(const Bigint&); // overloaded comparison

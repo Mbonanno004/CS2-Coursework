@@ -1,0 +1,25 @@
+// Infix to Prefix lab
+//
+// Michael Bonanno
+
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include "/users/kent/student/mbonann2/cs23001/assembler/stack.hpp"
+
+String infixToPrefix(const std::ifstream &in) {
+    if (!in.is_open()) {
+        std::cerr << "Error: File is not open" << std::endl;
+        return;
+    }
+
+    std::vector<String> expressions;
+    char buffer[1024];
+
+    while () {
+        if (in >> buffer) {
+            String expression(buffer);
+        }
+    }
+}

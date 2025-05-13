@@ -1,0 +1,89 @@
+///////////////////////////////////////////////////////////////////////////
+//  bug1.cpp
+//   
+// 
+//   Created by Maletic on 9/9/13.
+//   Up dated: 9/16/2024
+//
+//   This code prints out a sets of random numbers, no duplicates per set.
+//
+//   There is a bug in this code.  It compiles but seems to get into an infinit loop.
+//   Find the bug.
+//
+//   Step 1: Compile the program clang++ -Wall bug1.cpp -o buggy
+//           Run it ./buggy  ctrl c to break it.
+//   Step 2: Read over the code and figure out what it does a bit.
+//           Insert print statements into the different loops to 
+//           determine where the infinite loop is occurring.
+//           Start in the main and work down the call stack.
+//   Step 3: Once you figure out what loop is the problem try to 
+//           figure out what it is supposed to do and why its broken.
+//   Step 4: Make the fix and compile/run the program
+//   Step 5: Does it work?  
+
+
+
+#include <iostream>
+#include <cstdlib>
+
+const int MAX             = 6;
+const int SIZE_OF_SAMPLES = 3;
+const int REP             = 5;
+const int SEED            = 9809;
+
+bool inArray     (int[], int, int  );
+void setToRandom (int,   int, int[]);
+
+int main() {
+    std::cout << "TOP" << std::endl;
+    int arr[SIZE_OF_SAMPLES]; // arr[3]
+    srand(SEED);  //Seed random number generator.
+    std::cout << "Below seed" << std::endl;
+
+    for (int i = 0; i < REP; i++) {
+        std::cout << "top outer for loop" << std::endl;
+        setToRandom(MAX, SIZE_OF_SAMPLES, arr); // setToRandom (6, 3, arr[3]) (the first error is here doesn't complie past here)
+        std::cout << "after setToRandom function" << std::endl;
+        for(int j = 0; j < SIZE_OF_SAMPLES; j++) {
+            std::cout << "In inner for loop" << std::endl;
+            std::cout << arr[i] << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "BOTTOM" << std::endl;
+    return 0;
+}
+
+// result[n] will be initialized with a set of random numbers, no duplicates
+//           Values between 0 and max.
+// 
+void setToRandom(int max, int n, int result[]) {
+    int cntr = 0, r = 0; // (Mike note: r isn't initialized could be problem) (wasn't)
+    int size = SIZE_OF_SAMPLES;
+    std::cout << "setToRandom before while loop" << std::endl;
+    while (cntr < n) {
+        std::cout << "setToRandom first line of while loop" << std::endl;
+        r = rand();  //Get random number
+        r = r % (max + 1);
+        std::cout << "setToRandom: Before if statement" << std::endl;
+        if (inArray(result, size, r)) { // (Mike note: at this point cntr is still set to the value 0, which fo the inArray function 
+            result[cntr] =  r;          // that means the arr size is 0; (you chnaged the middle paramater from cntr)
+            cntr++;
+        }
+        std::cout << "setToRandom: After if statement" << std::endl;
+    }
+    return; // (Mike note: this function definiton has a return even though it is a void function)
+}
+
+// Check if x is included in array[] of arrSize.
+// Returns: 1 if x is a member
+//           0 if x is not a member
+// 
+bool inArray(int array[], int arrSize, int x) {
+    for (int i = 0; i < arrSize; ++i) { // (Mike note: the loop condition doesn't work if arrsize is 0)
+        if (array[i] == x) {
+            return true;
+        }
+    }
+    return false;
+}

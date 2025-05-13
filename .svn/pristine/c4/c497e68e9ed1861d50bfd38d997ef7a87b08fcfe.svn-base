@@ -1,0 +1,49 @@
+// File: fileio2.cpp
+//
+// CS II: File IO lab
+//
+// Compile: clang++ -Wall fileio2.cpp -o fileio
+// Usage:   ./fileio FILENAME
+
+#include <iostream>
+#include <fstream>
+
+//Part 5 
+//Read in a integer that is the number of lines to read
+//Each line has only one word on it.
+//Use data3.txt
+
+int main(int argc, char *argv[]) {
+    std::ifstream inFile(argv[1]);
+    if (!inFile.is_open()) {
+        std::cout << "Unable to open file: " << argv[1] << std::endl;
+        exit(1);
+    }
+
+    int lineCount = 0;
+    int num;
+    char line[100];
+
+    if (!inFile.eof()) {
+        inFile >> num;
+        std::cout << "Your num: " << num << std::endl;
+        ++lineCount;
+        std::cout << lineCount << ": " << num << std::endl;
+    }
+
+    while (!inFile.eof()) {
+        ++lineCount;
+        inFile >> line;
+        std::cout << lineCount << ": " << line << std::endl;
+    }
+
+    while (lineCount < num) {
+        ++lineCount;
+        std::cout << lineCount << ": " << "(No Text in file)" << std::endl;
+    }
+
+    std::cout << "Total: " << lineCount << std::endl;
+    std::cout << "Done with Part 5" << std::endl << std::endl;
+    inFile.close();
+    return 0;
+}

@@ -1,0 +1,66 @@
+//  String Test Program
+//
+//  Tests: charArray Constructor
+//
+//  
+#include <iostream>
+#include <cassert>
+#include "string.hpp"
+
+int main () {
+    {
+        // Setup fixture
+        char testString[] = "hello";
+
+        // Test (single word)
+        String charArray;
+
+        // Verify
+        assert(charArray == "hello");
+        std::cout << "charArray = " << charArray << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        // Setup fixture 
+        const char testString[] = "Hello, my name is Michael Bonanno. How are you doing today?";
+
+        // Test (simple sentence)
+        String charArray(testString);
+
+        // Verify
+        assert(charArray == testString);
+        std::cout << "charArray = " << charArray << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        // Setup fixture
+        const char testString[] =
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 25  a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 50  a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 75  a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 100 a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 125 a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 150 a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 175 a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 200 a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 225 a's
+        "aaaaaaaaaaaaaaaaaaaaaaaaa"  // 250 a's
+        "aaaaa";                     // 255 a's
+
+        // Test (char array the length of STRING_SIZE - 1, max size for m1)
+        String charArray(testString);
+
+        // Verify
+        assert(charArray == testString);
+        std::cout << "charArray = " << charArray << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        std::cout << "Finished testing charArray ctor" << std::endl;
+        std::cout << std::endl;
+    }
+
+}

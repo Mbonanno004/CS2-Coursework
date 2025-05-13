@@ -1,0 +1,67 @@
+// Infix to Prefix lab
+//
+// Michael Bonanno
+
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include "../string/string.hpp"
+#include "../assembler/stack.hpp"
+
+String infixToPrefix(String infix);
+
+int main () {
+    std::ifstream in("data3-1.txt");
+    if (!in.is_open()) {
+        std::cerr << "Error: Couldn't open in file";
+        exit(1);
+    }
+
+    std::vector<String> expressions;
+    int bufferSize = 1024;
+    char buffer[bufferSize];
+
+    while (in.getline(buffer, bufferSize)) {
+        String temp(buffer);
+        temp = temp.substr(0, temp.length() - 1);
+        expressions.push_back(temp);
+    }
+
+    int i = 0;
+    int size = expressions.size();
+    while (i < size) {
+        String result = infixToPrefix(expressions[i]);
+        std::cout << result << std::endl;
+        ++i;
+    }
+    
+    std::cout << "Done testing infix to prefix" << std::endl;
+    in.close();
+    return 0;
+}
+
+String infixToPrefix(String infix) {
+    if (infix.length() == 0) return String();
+
+    std::vector<String> exp;
+    exp = infix.split(' ');
+
+    stack<String> s;
+    String lhs, rhs, op;
+    String token;
+
+    int i = 0;
+    while (exp[i] != ';') {
+        token = exp[i];
+        ++i;
+        if (token == ')') {
+            rhs = s.pop();
+            op = s.pop();
+            lhs = s.pop();
+            s.push(op + lhs + rhs);
+        } else if (token != '(') {
+            s.push(token);
+        } 
+    }
+    return s.pop();
+}

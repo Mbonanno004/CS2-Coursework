@@ -1,0 +1,131 @@
+p1-m1: 100/100
+    - SVN revision number: 1279
+    - Functionality:
+        [y] Default constructor
+        [y] int constructor
+        [y] C-string constructor
+        [y] operator==
+        [y] operator<<
+    - Notes:
+        - Great work
+p1-m2: 85/100
+    - SVN revision number: 2312.
+    - Functionality:
+        [y] subscript operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] addition operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] input operator
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written
+            [y] tests for operator[]
+            [y] tests for operator+
+            [y] adequate testing
+        [y] add program
+            [y] present
+            [y] works correctly
+                - You are reading 2 extra numbers (-5)
+    - Notes:
+        - Missing data1-1.txt (-10)
+p1-m2-regrade: 90/100
+    - Revision 3130
+    - Functionality:
+        [y] subscript operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] addition operator
+            [y] implementation present
+            [y] instructor tests pass
+        [y] input operator
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written
+            [y] tests for operator[]
+            [y] tests for operator+
+            [y] adequate testing
+        [y] add program
+            [y] present
+            [y] works correctly
+                - You are reading 2 extra numbers (-5)
+    - Notes:
+p1-m3: 86/100
+    - SVN revision number: 3131
+    - Functionality:
+        [y] operator* (20pts)
+            [y] implementation present
+            [y] instructor tests pass
+        [y] timesDigit function (20pts)
+            [y] implementation present
+            [y] instructor tests pass
+        [y] times10 function (20pts)
+            [y] implementation present
+            [y] works correctly
+        [y] test cases written (20pts)
+            [y] tests for multiply
+                - Test case for n1 * 1 == n1, where n1 != 0 (-1)
+                - Test case for 1 * n1 == n1, where n1 != 0 (-1)
+            [y] tests for times10
+                - Test case for 0.times10(0) == 0 (-2)
+                - Test case for 0.times10(n1) == 0, where n1 != 0 (-2)
+            [y] tests for timesDigit
+                - Test case for 0.timesDigit(n1) == 0, where n1 != 0 (-1)
+                - Test case for 1.timesDigit(n1) == n1, where n1 != 0 (-1)
+                - Test case for bigint created with cstring ctor (-1)
+            [y] adequate testing
+        [y] multiply program (20pts)
+            [y] present
+            [y] works correctly
+                - Not checking for end of file before reading (-5)
+    - Notes:
+
+p2-m1: 86/100
+    - SVN Revision: 4199
+    - Functionality:
+        [y] implementation (26 methods) (33pts)
+            [] constructors (3 methods)
+            [] concatenation (4 methods)
+            [] relationship (10 methods)
+            [] length/capacity (2 methods)
+            [] findstr/substr/findchar (3 methods)
+            [] io operators (2 methods)
+            [] operator[] (2 methods)
+        [y] testing (33pts)
+            [] General
+            [] constructors (3 methods)
+            [] concatenation (4 methods)
+            [] relationship (10 methods)
+                - Missing tests for operator!= (-1)
+                - Missing tests for operator> (-1)
+                - Missing tests for operator<= (-1)
+                - Missing tests for operator>= (-1)
+            [] length/capacity (2 methods)
+            [] findstr/substr/findchar (3 methods)
+            [] io operators (2 methods)
+            [] operator[] (2 methods)
+                - Missing tests for operator[] const (-1)
+        [y] instructor tests (6 methods) (34pts)
+            [y] default ctor
+            [y] equality
+            [y] char ctor
+            [y] c-string ctor
+            [y] less than
+                - Tests failed (-3)
+            [y] concat
+                - Tests failed (-3)
+            [y] subscript
+            [y] len and capacity
+            [y] input
+            [y] substring
+                - Tests failed (-3)
+            [y] find char
+            [y] find string
+    - Notes:
+p2-m2: 50/100
+    - SVN Revision: 5185
+    - Functionality (0/50pts):
+        - Notes:
+            - string folder has executables or .o files (-50)
+    - Testing (50/50pts):

@@ -1,0 +1,59 @@
+//  String Test Program
+//
+//  Tests: == operator
+//  string vs. string, string vs. char, string vs. char[]
+//
+//  
+#include <iostream>
+#include <cassert>
+#include "string.hpp"
+
+int main () {
+    {
+        // Setup fixture
+        String text("pickled peppers");
+        String one(text);
+        String two(text);
+
+        // Test (string vs. string)
+
+        // Verify
+        assert(one == two);
+        std::cout << "one: "<< one << " == two: " << two << std::endl;
+        assert(two == one);
+        std::cout << "two: "<< two << " == one: " << one << std::endl;
+    }
+
+    {
+        // Setup fixture
+        char test = 'a';
+        String one(test);
+
+        // Test (string vs. char)
+        
+        // Verify
+        assert(one == test);
+        std::cout << "passes string == char" << std::endl;
+        assert(test == one);
+        std::cout << "passes char == string" << std::endl;
+    }
+
+    {
+        // Setup fixture
+        char test[] = "this is a test";
+        String one(test);
+
+        // Test (string vs. char[])
+
+        // Verify
+        assert(one == test);
+        std::cout << "passes string == char[]" << std::endl;
+        assert(test == one);
+        std::cout << "passes char[] == string" << std::endl;
+    }
+
+    {
+        std::cout << "Finished testing overloaded == operator" << std::endl;
+        std::cout << std::endl;
+    }
+}

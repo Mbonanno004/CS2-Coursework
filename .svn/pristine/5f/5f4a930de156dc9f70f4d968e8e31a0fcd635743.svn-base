@@ -1,0 +1,22 @@
+// .hpp for lab Object Creation and Destruction Lab
+
+#ifndef OBJECT_CONSTRUCTION
+#define OBJECT_CONSTRUCTION
+
+#include <iostream>
+
+class test {
+public:
+          test      () : ptr(0), size(0) {};                 // defualt constructor
+          test      (int);                                   // ctor for int
+          test      (const test&);                           // copy constructor
+          ~test     () { delete[] ptr; };                    // destructor
+    test& operator= (test rhs) { swap(rhs); return *this; }; // assignment
+    void  swap      (test&);
+
+private:
+    int *ptr;
+    int size;
+};
+
+#endif

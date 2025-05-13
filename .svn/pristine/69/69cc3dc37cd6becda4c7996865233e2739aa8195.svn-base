@@ -1,0 +1,37 @@
+//  String Test Program
+//
+//  Tests: input >>, uses output <<
+//
+//  
+#include <iostream>
+#include <fstream>
+#include "string.hpp"
+
+int main() {
+    {
+        std::cout << "Test 1:" << std::endl;
+        std::ifstream in;
+        in.open("input_test.txt");
+        if(!in.is_open()) {
+            std::cerr << "File not found: input_test.txt" << std::endl;
+            exit(1);
+        }
+        //Setup fixture
+        String one;
+        //Test
+        while(!in.eof()) {
+            in >> one;
+        }
+        //Verify
+        std::cout << one << std::endl;
+
+        in.close();
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "Finished testing input operator >>" << std::endl;
+        std::cout << std::endl;
+        return 0;
+    }
+}

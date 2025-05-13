@@ -1,0 +1,29 @@
+//hpp file for project 1
+#ifndef BIGINT
+#define BIGINT
+
+#include <iostream>
+using namespace std;
+
+const int CAPACITY = 300;
+
+class Bigint{
+public:
+    Bigint() {} // should initialize bigint to 0
+    Bigint(int); // initialize bigint to an int value you provide
+    Bigint(const char[]); // initialize bigint to a const char array you provide
+    void debugPrint(std::ostream&) const;
+    // Big 3
+    Bigint(const Bigint&); // copy constructor
+    Bigint operator=(const Bigint&); // overloaded assignment
+    ~Bigint(); // destructor
+    // other overloaded functions
+    Bigint operator==(const Bigint&); // overloaded comparison
+private:
+    int *number_;
+};
+
+std::ostream& operator<<(std::ostream&, const Bigint&); // overloaded output
+
+#endif
+// end of code

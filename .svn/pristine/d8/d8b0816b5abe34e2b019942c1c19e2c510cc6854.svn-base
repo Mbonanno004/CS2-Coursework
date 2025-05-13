@@ -1,0 +1,41 @@
+//  Stack class test program
+//
+//  Tests: pop()
+//
+
+#include "stack.hpp"
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include <cassert>
+#include <iostream>
+
+//===========================================================================
+int main ()
+{
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        String test("word");
+        String test2("next");
+        x.push(test);
+        x.push(test2);
+        // TEST 
+        String result = x.pop();
+        // VERIFY (makes sure pop properly points to next node and returns correct value)
+        assert(result == test2);
+        assert(x.top() == test);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        // TEST (empty stack)
+        String result = x.pop();
+        // VERIFY
+        assert(x.empty() == true);
+    }
+    
+    std::cout << "Done testing pop()." << std::endl;
+    return 0;
+}

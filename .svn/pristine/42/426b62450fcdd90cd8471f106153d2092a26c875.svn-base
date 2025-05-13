@@ -1,0 +1,73 @@
+//
+// File:        logentry.hpp
+//
+// Version:     1.0
+// Date:
+// Author:      Michael Bonanno
+//
+// Description: Class definition for a log entry.
+//
+//
+//
+ 
+#ifndef CS_LOGENTRY_H_
+#define CS_LOGENTRY_H_
+
+#include "string.hpp"
+#include <iostream>
+#include <vector>
+#include <fstream>
+
+//
+class Date {
+public:
+         Date() : day(String()), month(String()), year(String()) {};
+         Date(String d, String m, String y) { day = d; month = m; year = y; };
+            
+  friend std::ostream& operator<<(std::ostream& out, const Date& date) { out << date.day << "/" << date.month << "/" << date.year; return out; };
+private:
+    String  day, month, year;
+};
+
+//
+class Time {
+  public:
+           Time() : hour(String()), minute(String()), second(String()) {};
+           Time(String h, String m, String s) { hour = h; minute = m; second = s; };
+
+    friend std::ostream& operator<<(std::ostream& out, const Time& time) { out << time.hour << ":" << time.minute << ":" << time.second; return out; };
+  private:
+    String  hour, minute, second;
+};
+
+
+// A single log entry
+class LogEntry {
+public:
+            LogEntry   () : host(String()), date(Date()), time(Time()), request(String()), status(String()), number_of_bytes(0) {};
+            LogEntry   (const String&);
+    int     bytes      () const { return number_of_bytes; }; 
+    String  hostAddress() const { return host; };
+    friend  std::ostream& operator<<(std::ostream&, const LogEntry&);
+
+private:
+    String  host;
+    Date    date;
+    Time    time;
+    String  timezone;
+    String  request;
+    String  status;
+    int     number_of_bytes;
+};
+
+
+//
+// Free functions
+//
+
+std::vector<LogEntry>   parse       (std::istream&);
+void                    output_all  (std::ostream&, const std::vector<LogEntry>&);
+void                    by_host     (std::ostream&, const std::vector<LogEntry>&);
+int                     byte_count  (const std::vector<LogEntry>&);
+
+#endif

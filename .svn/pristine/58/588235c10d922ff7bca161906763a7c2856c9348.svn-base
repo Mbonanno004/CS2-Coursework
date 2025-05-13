@@ -1,0 +1,25 @@
+//  String Test Program
+//
+//  Tests: Default Constructor, uses == and <<
+//
+//  
+#include <iostream>
+#include <cassert>
+#include "string.hpp"
+
+int main () {
+    {
+        // Setup fixture
+        char test = '\0';
+
+        // Test 
+        String tester(test);
+
+        // Verify
+        assert(tester == '\0');
+    }
+
+    {
+        std::cout << "Finished testing default ctor" << std::endl;
+    }
+}

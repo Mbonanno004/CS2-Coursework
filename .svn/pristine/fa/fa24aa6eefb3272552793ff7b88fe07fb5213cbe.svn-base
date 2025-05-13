@@ -1,0 +1,15 @@
+// Michael Bonanno
+// Sort_report lab
+// explanation.txt
+
+1. Which function took the longest?
+    1) Bubble sort function, 35 seconds
+    2) operator [], 25 seconds
+
+2. Why did this function take the longest?
+    1) Bubble sort took the longest at 35 seconds. Even though the function for the bubble sort is only called once,
+    it has to loop itself over and over reordering the vector until it's finished sorting. which can be very taxing depending on the 
+    size of whatever it is sorting.
+    
+    2) the operator[] took the second longest because it is used within the loops of the bubble sort function.
+    

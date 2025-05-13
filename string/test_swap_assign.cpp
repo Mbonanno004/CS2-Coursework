@@ -1,0 +1,73 @@
+//  String Test Program
+//
+//  Tests: swap(), uses ==
+//
+//  
+#include <iostream>
+#include <cassert>
+#include "string.hpp"
+
+int main() {
+    {
+        std::cout << "Test 1:" << std::endl;
+        //Setup fixture
+        String test1;
+        String test2;
+        //Test
+        test1.swap(test2);
+        //Verify
+        assert(test1 == test2);
+        assert(test1 == String());
+        assert(test2 == String());
+        std::cout << "Passed test 1" << std::endl;
+    }
+
+    {
+        std::cout << "Test 2:" << std::endl;
+        //Setup fixture
+        String test1('a');
+        String test2;
+        //Test
+        test1.swap(test2);
+        //Verify
+        assert(!(test1 == test2));
+        assert(test1 == String());
+        assert(test2 == 'a');
+        std::cout << "Passed test 2" << std::endl;
+    }
+
+    {
+        std::cout << "Test 3:" << std::endl;
+        //Setup fixture
+        String test1("abcde");
+        String test2;
+        //Test
+        test1.swap(test2);
+        //Verify
+        assert(!(test1 == test2));
+        assert(test1 == String());
+        assert(test2 == "abcde");
+        std::cout << "Passed test 3" << std::endl;
+    }
+
+    {
+        std::cout << "Test 4:" << std::endl;
+        //Setup fixture
+        String test1("Purple");
+        String test2("Brown");
+        //Test
+        test1.swap(test2);
+        //Verify
+        assert(!(test1 == test2));
+        assert(test1 == "Brown");
+        assert(test2 == "Purple");
+        std::cout << "Passed test 4" << std::endl;
+    }
+
+
+    {
+        std::cout << std::endl;
+        std::cout << "Finished testing swap assign" << std::endl;
+        std::cout << std::endl;
+    }
+}

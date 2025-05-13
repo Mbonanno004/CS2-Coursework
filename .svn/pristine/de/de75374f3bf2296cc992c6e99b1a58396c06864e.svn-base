@@ -1,0 +1,105 @@
+//
+//
+// File:        logentry.cpp  
+//       
+// Version:     1.0
+// Date:        
+// Author:      Michael Bonanno
+//
+// Description: Class implementation for a log entry.
+//
+//
+ 
+#include "string.hpp"
+#include "logentry.hpp"
+#include <iostream>
+#include <vector>
+#include <fstream>
+
+// REQUIRES: logEntryParts.size() == 10
+// ENSURES: Empty Log is empty, 
+LogEntry::LogEntry(const String& line) {
+    //Use split to create LogEntry
+    //std::vector<String> logEntryParts = line.split(' ');
+    std::vector<String> logEntryParts = line.split(' ');
+    
+    if (logEntryParts.size() != 10) {
+        host = String("");
+        date = Date();
+        time = Time();
+        timezone = String("");
+        request = String("");
+        status = String("");
+        number_of_bytes = 0;
+        return;
+    }
+
+    host = logEntryParts[0];
+
+    //ex: 131.123.47.176 - - [18/Sep/2002:12:05:25 -0400] "GET /~darci/ HTTP/1.0" 200 5625
+
+    String temp = logEntryParts[3];                                         // ex: [18/Sep/2002:12:05:25
+    temp = temp.substr(1, temp.length() - 1);                               // temp = 18/Sep/2002:12:05:25
+    std::vector<String> vTime = temp.split(':');                            // vTime = "18/Sep/2002", "12", "05", "25"
+    String tempDate = vTime[0];                                             // tempDate = 18/Sep/2002
+    std::vector<String> vDate = tempDate.split('/');                        // vDate = "18", "Sep", "2002"
+
+    time = Time(vTime[1], vTime[2], vTime[3]);                              // time = (12, 05, 25)
+    timezone = logEntryParts[4].substr(0, logEntryParts[4].length() - 1);   // timezone = -0400
+    date = Date(vDate[0], vDate[1], vDate[2]);                              // date = (18, Sep, 2002)
+
+    request = logEntryParts[5] + String(" ") + logEntryParts[6] + String(" ") + logEntryParts[7];       
+    request = request.substr(1, request.length() - 2);                      // request = Get /~darci/ HTTP/1.0"
+
+    status = logEntryParts[8];
+
+    number_of_bytes = logEntryParts[9];                                     // with operator int() implementation in string files this
+}                                                                           // should work as intended. String to int
+
+// REQUIRES: open file
+// ENSURES:
+std::vector<LogEntry> parse(std::istream& in) {
+    std::vector<LogEntry> result;
+    char temp[200];
+
+    if (!in.is_open()) {
+        std::cerr << "ERROR: in File is not open" << std::endl;
+        exit(1);
+    }
+
+    while(!in.eof()) {
+        in.getline(temp, 200);
+        String tmp(temp);
+        LogEntry log(tmp);
+        result.push_back(log);
+    }
+
+    return result;
+}
+
+// REQUIRES:
+// ENSURES:
+void output_all(std::ostream& out, const std::vector<LogEntry>& logs) {
+    int size = logs.size();
+    for (int i = 0; i < size; ++i) {
+        logs[i]
+    }
+}
+
+// REQUIRES:
+// ENSURES:
+void by_host(std::ostream& out, const std::vector<LogEntry>&) {
+
+}
+
+// REQUIRES:
+// ENSURES:
+int byte_count(const std::vector<LogEntry>& logs) {
+    int totalBytes = 0;
+    int size = logs.size();
+
+    for (int i = 0; i < size; ++i) {
+
+    }
+}
+

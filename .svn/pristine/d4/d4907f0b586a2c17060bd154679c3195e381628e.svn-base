@@ -1,0 +1,8 @@
+ 13:00:31 up 5 days, 18:05,  6 users,  load average: 8.77, 9.06, 8.65
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+rcoulson pts/14   10.22.52.14      12:49    1:19   0.04s  0.04s -bash
+hwebb7   pts/15   10.22.4.210      12:20   37:35   0.03s  0.03s -bash
+jwarre46 pts/33   10.32.0.208      12:26    5:11   0.06s  0.06s -bash
+tlaryea  pts/41   10.22.1.219      12:41    7.00s  0.06s  0.06s -bash
+bregmi1  pts/25   10.22.36.80      12:50    2:15   0.04s  0.04s -bash
+aajithku pts/16   10.22.27.192     12:56    1:08   0.03s  0.03s -bash

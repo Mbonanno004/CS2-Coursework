@@ -1,0 +1,12 @@
+// Michael Bonanno
+// Sort_report lab
+// explanation.txt
+
+1. Which function took the longest?
+    Bubble sort
+
+2. Why did this function take the longest?
+    Bubble sort took the longest because bubble sort is a recursive function with the O notation of O(n^2),
+    because of this even though the function for the bubble sort is only called once. it has to recursively call over
+    itself until it's finished.
+    

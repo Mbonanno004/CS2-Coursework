@@ -1,0 +1,57 @@
+//  Stack class test program
+//
+//  Tests: operator =
+//
+
+#include "stack.hpp"
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include <cassert>
+#include <iostream>
+
+//===========================================================================
+int main ()
+{
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        // TEST
+        stack<String> y = x;
+        // VERIFY
+        assert(x.tos->data == y.tos->data);
+        assert(x.empty() == true);
+        assert(y.empty() == true);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        String test("This is a test");
+        x.push(test);
+        // TEST
+        stack<String> y = x;
+        // VERIFY
+        assert(y.tos->data == test);
+        assert(x.tos->data == y.tos->data);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String> x;
+        stack<String> y;
+        String test("This is a test");
+        String test2("Also a test");
+        x.push(test);
+        y.push(test2);
+        // TEST
+        y = x;
+        // VERIFY
+        assert(y.tos->data == test);
+        assert(x.tos->data == y.tos->data);
+    }
+    
+    std::cout << "Done testing operator =." << std::endl;
+    return 0;
+}

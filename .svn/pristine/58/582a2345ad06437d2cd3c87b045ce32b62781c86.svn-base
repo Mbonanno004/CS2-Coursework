@@ -1,0 +1,54 @@
+// Infix to Prefix lab
+//
+// Michael Bonanno
+
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include "/users/kent/student/mbonann2/cs23001/assembler/stack.hpp"
+
+String infixToPrefix(String infix) {
+    if (infix.length() == 0) return String();
+
+    std::vector<String> exp;
+    exp = infix.split(' ');
+    // ( AX + ( B * C ) ) ;
+    // "(", "AX", "+", "(", "B", "*", "C", ")", ")", ";"
+
+    stack<String> s;
+    String lhs, rhs, op;
+    String token;
+
+    int i = 0;
+    while (exp[i] != ';') {
+        token = exp[i];
+        ++i;
+        if (token == ')') {
+            rhs = s.pop();
+            op = s.pop();
+            lhs = s.pop();
+            s.push(op + lhs + rhs);
+        } else if (token != '(') {
+            s.push(token);
+        } 
+    }
+
+    return s.pop();
+}
+
+/*
+AX
++
+B
+*
+C
+"Right paranthese found", rhs = C, op = *, lhs = B, s.push( * + B + C)
+/Current Stack:
+AX 
++
+*BC
+"Second right Paranthese found", rhs = *BC, op = +, lhs = AX", s.push(*BC + + + AX)
+/Current Stack:
+*BC+AX
+*/

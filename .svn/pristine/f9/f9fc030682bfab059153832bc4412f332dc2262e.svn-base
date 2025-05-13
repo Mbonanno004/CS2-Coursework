@@ -1,0 +1,45 @@
+//  Stack class test program
+//
+//  Tests: swap() 
+//
+
+#include "stack.hpp"
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include <cassert>
+#include <iostream>
+
+//===========================================================================
+int main ()
+{
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String>  x;
+        stack<String>  y;
+        // TEST
+        x.swap(y);
+        // VERIFY
+        assert(x.tos->data == y.tos->data);
+        assert(x.empty() == true);
+        assert(y.empty() == true);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String>  x;
+        stack<String>  y;
+        String test1('a');
+        String test2('b');
+        x.push(test1);
+        y.push(test2);
+        // TEST
+        x.swap(y)
+        // VERIFY
+        assert(x.tos->data == test1);
+        assert(y.tos->data == test2);
+    }
+    
+    std::cout << "Done testing swap()." << std::endl;
+    return 0;
+}

@@ -1,0 +1,69 @@
+// CPP file for project 1
+#include "bigint.hpp"
+
+Bigint::Bigint() {
+    for (int i = 0; i < CAPACITY; i++) {
+        digits[i] = 0;
+    }
+}
+
+Bigint::Bigint(int number) { 
+    for (int i = 0; i < CAPACITY; i++) {
+        digits[i] = 0;
+    }
+
+    if (number == 0) {
+        digits[0] = 0;
+        return;
+    }
+
+    int index = 0;
+
+    while (number > 0 && index < CAPACITY) {
+        digits[index] = number % 10;
+        number /= 10;
+        index++;
+    }
+}
+
+Bigint::Bigint(const char string[]) {
+    for (int i = 0; i < CAPACITY; i++) {
+        digits[i] = 0;
+    }
+    
+    int length = 0;
+
+    while (string[length] != '\0') {
+        length++;
+    }
+
+    int strIndex = length - 1;
+    int arrIndex = 0;
+
+    while (strIndex >= 0 && arrIndex < CAPACITY) {
+        digits[arrIndex] = string[strIndex] - '0';
+        strIndex--;
+        arrIndex++;
+    }
+}
+
+void Bigint::debugPrint(std::ostream& out) const {
+    for (int i = CAPACITY - 1; i >= 0; i--) {
+        out << digits[i];
+        if (i > 0) {
+            out << " | ";
+        }
+    }
+    out << std::endl;
+}
+
+// overloaded operators
+
+std::ostream& operator<<(std::ostream& out, const Bigint& output) { // overloaded output
+    
+    return out;
+}
+
+bool operator== (const Bigint& one, const Bigint& two) { // overloaded comparison
+    
+}

@@ -1,0 +1,57 @@
+//  Stack class test program
+//
+//  Tests: copy constructor (uses push)
+//
+
+#include "stack.hpp"
+#include "/users/kent/student/mbonann2/cs23001/string/string.hpp"
+#include <cassert>
+#include <iostream>
+
+//===========================================================================
+int main ()
+{
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String>  x;
+        // TEST
+        stack<String>  y(x); 
+        // VERIFY
+        assert(x.empty() == true);
+        assert(y.empty() == true);
+        assert(x.tos->data == y.tos->data);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<int>  x;
+        x.push(8);
+        // TEST
+        stack<int>  y(x); 
+        // VERIFY
+        assert(x.tos->data == 8);
+        assert(y.tos->data == 8);
+        assert(x.tos->data == y.tos->data);
+    }
+
+    {
+        //------------------------------------------------------
+        // SETUP FIXTURE
+        stack<String>  x;
+        x.push('a');
+        // TEST
+        stack<String>  y(x); 
+        // VERIFY
+        assert(x.tos->data == 'a');
+        assert(y.tos->data == 'a');
+        assert(x.tos->data == y.tos->data);
+    }
+
+
+    // ADD ADDITIONAL TESTS AS NECESSARY
+    
+    std::cout << "Done testing copy constructor." << std::endl;
+    return 0;
+}

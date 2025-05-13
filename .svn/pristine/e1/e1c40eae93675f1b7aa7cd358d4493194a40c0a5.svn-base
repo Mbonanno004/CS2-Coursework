@@ -1,0 +1,198 @@
+// Michael Bonanno
+// string.cpp for the string project
+
+#include "string-mile1.hpp"
+
+//Constructors
+String::String() {
+    str[0] = 0;
+}
+
+String::String (char a) {
+    str[0] = a;
+    str[1] = 0;
+}
+
+String::String (const char arr[]) {
+    int i = 0;
+
+    while(arr[i] != '\0' && i < capacity()) {
+        str[i] = arr[i];
+        ++i;
+    }
+
+    str[i] = 0;
+}
+
+// String methods
+int String::capacity() const {
+    return STRING_SIZE - 1;
+}
+
+int String::length() const {
+    int length = 0;
+
+    while (str[length] != '\0') {
+        ++length;
+    }
+
+    return length;
+}
+
+char& String::operator[] (int num) {
+    return str[num];
+}
+
+char String::operator[] (int num) const {
+    return str[num];
+}
+
+String String::substr (int start, int end) const{
+    if (start < 0 || end < 0) return -1;
+    if (start > capacity() || end > capacity()) return -1;
+    if (start > end) return -1;
+
+    String sub;
+    int i = 0;
+
+    while (start != end) {
+        sub.str[i] = str[start];
+        ++i;
+        ++start;
+    }
+
+    return sub;
+}
+
+int String::findch (int start, char ch) const{
+    if (start < 0 || start >= length()) return -1;
+
+    int i = start;
+
+    while (str[i] != 0) {
+        if (str[i] == ch) {
+            return i;
+        }
+        ++i;
+    }
+
+    return -1;
+}
+
+int String::findstr (int start, const String& string) const {
+    if (start < 0 || start >= length()) return -1;
+    int stringLength = string.length();
+    if (stringLength == 0) return -1;
+
+    for (int i = start; i <= length() - stringLength; ++i) {
+        int j = 0;
+        while(j < stringLength && str[i + j] == string.str[j]) {
+            ++j;
+        }
+
+        if (j == stringLength) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// overloaded relational operators
+// overloaded methods
+String& String::operator+= (const String& rhs) {
+    int thisIndex = length();
+    int rhsIndex = 0;
+
+    while (rhs[rhsIndex] != '\0' && thisIndex != capacity()) {
+        str[thisIndex] = rhs.str[rhsIndex];
+        ++thisIndex;
+        ++rhsIndex;
+    }
+
+    str[thisIndex] = '\0';
+    return *this;
+}
+
+bool String::operator== (const String& rhs) const {
+    if (length() != rhs.length()) return false;
+
+    int i = 0;
+
+    while (str[i] == rhs[i] && i <= length()) {
+        if (i == length()) return true;
+        ++i;
+    }
+
+    return false;
+}
+
+bool String::operator< (const String& rhs) const {
+    int i = 0;
+    
+    while (str[i] != 0 && rhs.str[i] != 0) {
+        if (str[i] < rhs.str[i]) {
+            return false;
+        }
+        if (str[i] > rhs.str[i]) {
+            return true;
+        }
+        ++i;
+    }
+
+    if (str[i] == 0 && rhs.str[i] != 0) {
+        return true; 
+    }
+
+    return false;
+}
+
+// overloaded free functions
+String operator+ (String lhs, const String& rhs) {
+    String result;
+    result += lhs;
+    result += rhs;
+    return result;
+}
+
+bool operator== (const char arr[],  const String& rhs) { return String(arr) == rhs; }
+
+bool operator== (char c,            const String& rhs) { return String(c) == rhs; }
+
+bool operator<  (const char arr[],  const String& rhs) { return String(arr) < rhs; }
+
+bool operator<  (char character,    const String& rhs) { return String(character) < rhs; }
+
+bool operator<= (const String& lhs, const String& rhs) { return (lhs < rhs || lhs == rhs); }
+
+bool operator!= (const String& lhs, const String& rhs) { return !(lhs == rhs); }
+
+bool operator>= (const String& lhs, const String& rhs) { return !(lhs < rhs); }
+
+bool operator>  (const String& lhs, const String& rhs) { return rhs < lhs; }
+
+// overloaded I/O
+std::istream& operator>> (std::istream& in, String& input) {
+    char arr[STRING_SIZE];
+    arr[0] = 0;
+
+    if (!in.eof()) {
+        in >> arr;
+    }
+
+    input = String(arr);
+    
+    return in;
+}
+
+std::ostream& operator<< (std::ostream& out, const String& output) {
+    int i = 0;
+    
+    while (i <= output.length()) {
+        out << output.str[i];
+        ++i;
+    }
+
+    return out;
+}
+
+
